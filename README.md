@@ -23,7 +23,3 @@ Welcome to my GitHub! I'm a software engineer passionate about building scalable
 
 ### 📫 Let's Connect
 - ✉️ **Email:** marcosbarranquero@outlook.es
-- ⚡ **Fun fact:** I can debug a production crash in the cloud just as fast as I can explain a complex algorithm on a whiteboard.
-
----
-*"Aiming for code that is not just functional, but a joy to maintain."*
