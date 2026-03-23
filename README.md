@@ -23,3 +23,34 @@ Welcome to my GitHub! I'm a software engineer passionate about building scalable
 
 ### 📫 Let's Connect
 - ✉️ **Email:** marcosbarranquero@outlook.es
+
+
+Para crear una organización consumidora en un catálogo utilizando la CLI (apic-slim.exe), debes usar el comando consumer-orgs:create y proporcionarle un archivo de definición (o pasarle la entrada directamente a través de la línea de comandos) que contenga los detalles de la nueva organización.
+Aquí tienes los pasos exactos para hacerlo:
+1. Obtener la URL del propietario (owner_url)
+Toda organización consumidora necesita un usuario propietario. Para el archivo de creación, necesitarás la URL exacta de ese usuario en el sistema. Puedes obtenerla ejecutando el siguiente comando:
+
+./apic-slim.exe users:get <nombre_de_usuario> --user-registry <nombre_del_registro_de_usuarios> --server <servidor_gestion> --org <tu_organizacion_proveedora> --fields url --output -
+
+Este comando te devolverá algo parecido a esto: https://<servidor>/api/user-registries/.../users/....
+2. Ejecutar el comando de creación
+Puedes crear la organización de dos formas: usando un archivo o insertando los datos directamente en la terminal.
+Opción A: Pasando los datos directamente (stdin) Utiliza un guion (-) al final del comando para indicarle a la CLI que leerá la entrada desde la consola:
+
+./apic-slim.exe consumer-orgs:create --server <servidor_gestion> --catalog <nombre_catalogo> --org <tu_organizacion_proveedora> -
+
+Al presionar Enter, la consola esperará que introduzcas el contenido. Pega lo siguiente (sustituyendo los valores) y presiona CTRL+D para terminar la entrada:
+
+name: mi-org-consumidora
+title: Mi Organización Consumidora
+owner_url: https://<servidor_gestion>/api/user-registries/.../users/fddd5df5-c178-4a34-ab92-0a48344d5c9b
+
+Nota: name debe contener solo caracteres alfanuméricos, guiones y guiones bajos. title es el nombre legible para los usuarios.
+Opción B: Usando un archivo de definición Si prefieres automatizarlo, guarda el bloque YAML (o su equivalente en JSON) del paso anterior en un archivo llamado, por ejemplo, consumer_org.yaml. Luego ejecuta:
+
+./apic-slim.exe consumer-orgs:create --server <servidor_gestion> --catalog <nombre_catalogo> --org <tu_organizacion_proveedora> consumer_org.yaml
+
+De esta forma, la organización consumidora quedará registrada bajo el catálogo especificado.
+¿Cómo se configura un Test-ID en el YAML de Automated API behavior testing?
+¿Qué categorías semánticas existen para las propiedades de una API Extension?
+¿Cómo puedo usar JUnitFormat para integrar los tests en Jenkins?
